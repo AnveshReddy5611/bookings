@@ -1,0 +1,38 @@
+[
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "indvpak",
+      "team":"pak",
+      "timer":"18:30",
+      "time": 19,
+      "minutes": 43,
+      "oversleft":"20",
+      "score":"0",
+      "wickets":"10"
+    },
+    {
+        "userId": 2,
+        "id": 2,
+        "title": "indvpak",
+        "team":"pak",
+        "timer":"18:32",
+        "time": 17,
+        "minutes":44,
+        "oversleft":"19",
+        "score":"7",
+        "wickets":"10"
+      },
+    {
+        "userId": 3,
+        "id": 3,
+        "title": "indvpak",
+        "team":"pak",
+        "timer":"18:34",
+        "time": 17,
+        "minutes":46,
+        "oversleft":"18",
+        "score":"16",
+        "wickets":"10"
+     }
+  ]
