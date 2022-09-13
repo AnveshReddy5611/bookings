@@ -10,7 +10,7 @@ function Home() {
     navigate("./cricket");
   };
   return (
-    <div> <h1 className="category">Select a Category</h1> 
+    <div className="complete"> <h1 className="category">Select a Category</h1> 
     <div className="container">
       <div className="row">
      <br />

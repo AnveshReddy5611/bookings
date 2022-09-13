@@ -1,52 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {useSelector,useDispatch} from 'react-redux'
+import {save} from "./winslice"
 import "./cricket.css"
+import {US} from "country-flag-icons/react/3x2"
 
 
 function Cricket() {
+  // const status= ("suresh"<"suresh")? "suresh": ("suresh"<"suresh")?"suresh":"mahesh"
+  // console.log(status,"I am status")
+
+  const[disable, setDiasable]=useState(true)
+  const date=new Date()
+  const actualtime=date.getHours()+":"+date.getMinutes()
   const navigate=useNavigate()
-  const gotomatch=()=>{
-    window.location.href='/indvspak'
-    console.log("Anvesh")
+  const dispatch=useDispatch()
+  const matches=useSelector((state)=>state.winorloose.matches)
+  console.log(matches,"I a,m matches")
+  const gotomatch=(index)=>{
+    dispatch(save(index))
+    console.log(index,"Anvesh")  
+    navigate("/bet")
+ // window.location.href='/indvspak'
+   
   }
   return (
-    <div><h1>Select a Match</h1>
-    
-    <table class="table table-hover table-dark" id="table">
-  <thead>
-    <tr>
-      <th scope="col">S.No</th>
-      <th scope="col">Fixture</th>      
-      <th scope="col">Format</th>
-      <th scope="col">Venue</th>
-      <th scope="col">Time</th>
-    </tr>
-  </thead>
+    <div>
+      <table className="table table-hover table-dark" id="table">
+        
+    <thead>
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Fixture</th>      
+        <th scope="col">Format</th>
+        <th scope="col">Venue</th>
+        <th scope="col">Time</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+   
+     
   <tbody>
-    <tr onClick={gotomatch}>
-      <th scope="row">1</th>
-      <td>IND VS PAK</td>
-      <td>T20</td>
-      <td>India,Hyderabad</td>
-      <td> 07:00 PM(IST)</td>
+  {matches.map((data,index)=>{
+      return(
+        <>
+    <tr disabled={!disable} onClick={()=>gotomatch(data)}  >    
+      <th scope="row">{data.SNo}</th>
+      <td >{data.Match}</td>
+      <td>{data.format}</td>
+      <td>{data.Venue}</td>
+      <td>{data.Time}</td>
+      <td>{data.starttime > actualtime?"Yet to Start":data.endtime<actualtime?"Match Finished":"In Match"}</td>
+           
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>AUS VS ENG</td>
-      <td>Test</td>
-      <td>England,Oval</td>
-      <td> 09:00 AM(IST)</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>WI VS SA</td>
-      <td>ODI</td>
-      <td>SA,Bredasdorp</td>
-      <td> 03:00 PM(IST)</td>
-    </tr>
-  </tbody>
-</table>
+    </>
+      )
+    })}
+    </tbody>
     
+</table>    
     </div>
   )
 }
